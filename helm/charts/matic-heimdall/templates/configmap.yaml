@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name:  {{ tpl .Values.configmap.name $ }}
+data:
+  {{- range $k, $v := .Values.configmap.data }}
+  {{ $k }}: | 
+{{ (tpl $v $) | indent 4 }}
+  {{- end }}
