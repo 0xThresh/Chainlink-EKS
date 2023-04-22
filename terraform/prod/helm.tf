@@ -1,13 +1,13 @@
 provider "helm" {
   kubernetes {
-    config_path = "/home/james/.kube/config"
+    config_path = "~/.kube/config"
   }
 }
 
 resource "helm_release" "chainlink" {
   # Wasn't able to pull this from vulcanlink, trying local 
   name       = "chainlink"
-  chart      = "../../helm/charts/chainlink"
+  chart      = "../../helm/updated-charts/chainlink"
   namespace  = "default"
 
   set {
@@ -18,7 +18,7 @@ resource "helm_release" "chainlink" {
 
 resource "helm_release" "ethereum" {
   name       = "ethereum"
-  chart      = "vulcanlink/geth"
+  chart      = "../../helm/updated-charts/geth"
   namespace  = "default"
 
   set {
